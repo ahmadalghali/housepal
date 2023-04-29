@@ -11,10 +11,10 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: colors.sky,
+        primary: colors.green,
         secondary: colors.green,
         accent: colors.zinc,
-        brand: colors.sky
+        brand: colors.green
         // primary: colors.indigo,
       },
     },

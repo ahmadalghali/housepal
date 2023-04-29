@@ -11,7 +11,7 @@ body {
 
 @layer components {
   .bg-brand {
-    @apply bg-green-500;
+    @apply bg-primary-500;
   }
 
   .bg-brand-dark {

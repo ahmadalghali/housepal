@@ -1,0 +1,61 @@
+/* @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,500;0,700;1,100;1,200;1,300;1,400;1,500;1,500;1,700&display=swap"); */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: "Poppins", sans-serif;
+}
+
+@layer components {
+  .bg-brand {
+    @apply bg-green-500;
+  }
+
+  .bg-brand-dark {
+    @apply bg-primary-900;
+  }
+
+  .bg-brand-light {
+    @apply bg-primary-300;
+  }
+
+  .bg-accent {
+    @apply bg-accent-900 text-white;
+  }
+
+  .text-brand {
+    @apply text-primary-500;
+  }
+
+  .btn {
+    @apply py-3 px-5 rounded-full text-lg font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-opacity-75 uppercase;
+  }
+
+  .btn-primary {
+    @apply btn text-white bg-brand;
+  }
+
+  .btn-secondary {
+    @apply btn text-black bg-slate-100;
+  }
+
+  .btn-accent {
+    @apply btn text-white bg-accent-900;
+  }
+
+  .input {
+    @apply px-3 py-3 text-lg text-black rounded-full  focus:outline-primary-400 outline-offset-2 w-full;
+  }
+
+  textarea,
+  input {
+    @apply input-bg;
+  }
+
+  .input-bg {
+    @apply bg-slate-200;
+  }
+}

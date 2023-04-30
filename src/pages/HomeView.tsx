@@ -1,54 +1,56 @@
 import { useNavigate } from "react-router-dom";
-import { logout } from "../service/auth.service";
-import { IconLogout, IconPlus, IconSearch } from "@tabler/icons-react";
+import { IconPlus, IconSearch } from "@tabler/icons-react";
 import useUser from "../hooks/useUser";
-import { Modal } from "@mantine/core";
-import { useDisclosure } from "@mantine/hooks";
+
 import WorkEntry from "../components/WorkEntry";
+import useMinsFormatter from "../hooks/useMinsFormatter";
 
 export default function HomeView() {
   const navigate = useNavigate();
+  const { user } = useUser();
 
-  const [opened, { open: displayLogoutModal, close: dismissLogoutModal }] = useDisclosure(false);
+  const [time, format, { formattedStr }] = useMinsFormatter(799);
 
   return (
     <>
-      <LogoutModal onClose={dismissLogoutModal} opened={opened} />
-
       <div className=''>
-        <Header displayLogoutModal={displayLogoutModal} />
+        <h1 className='text-3xl font-semibold'>Hello, {user?.firstname}.</h1>
 
         <div className='grid grid-cols-2 gap-4 mt-10'>
-          <div className='bg-slate-200 h-20 w-20 rounded-3xl p-3'>
+          <div className='bg-slate-200 rounded-xl p-3 h-24'>
             <div className='flex flex-col h-full justify-between'>
               <p>
-                <span className='text-3xl font-semibold'>20</span> mins
+                <span className='text-3xl font-semibold'>20</span>
+                <span className='font-medium text-xl '> mins</span>
               </p>
-              <p className='self-end text-xl'>Today</p>
+              <p className='self-end font-medium text-gray-500'>Today</p>
             </div>
           </div>
-          <div className='bg-slate-200 rounded-3xl p-3'>
+          <div className='bg-slate-200 rounded-xl p-3 h-24'>
             <div className='flex flex-col h-full justify-between'>
               <p>
-                <span className='text-3xl font-semibold'>145</span> mins
+                <span className='text-3xl font-semibold'>2.3</span>
+                <span className='font-medium text-xl '> Hrs</span>
               </p>
-              <p className='self-end text-xl'>This week</p>
+              <p className='self-end font-medium text-gray-500'>This week</p>
             </div>
           </div>
-          <div className='bg-slate-200 rounded-3xl p-3'>
+          <div className='bg-slate-200 rounded-xl p-3 h-24'>
             <div className='flex flex-col h-full justify-between'>
               <p>
-                <span className='text-3xl font-semibold'>20</span> mins
+                <span className='text-3xl font-semibold'>4.8</span>
+                <span className='font-medium text-xl '> Hrs</span>
               </p>
-              <p className='self-end text-xl'>This month</p>
+              <p className='self-end font-medium text-gray-500'>This month</p>
             </div>
           </div>
-          <div className='bg-slate-200 rounded-3xl p-3'>
+          <div className='bg-slate-200 rounded-xl p-3 h-24'>
             <div className='flex flex-col h-full justify-between'>
               <p>
-                <span className='text-3xl font-semibold'>33.5</span> Hours
+                <span className='text-3xl font-semibold'>33.5</span>
+                <span className='font-medium text-xl '> Hrs</span>
               </p>
-              <p className='self-end text-xl'>All time</p>
+              <p className='self-end font-medium text-gray-500'>All time</p>
             </div>
           </div>
         </div>
@@ -78,39 +80,6 @@ export default function HomeView() {
         </div>
       </div>
     </>
-  );
-}
-
-function Header({ displayLogoutModal }: { displayLogoutModal: () => void }) {
-  const { user } = useUser();
-
-  return (
-    <div className='flex justify-between items-center'>
-      <h1 className='text-4xl font-bold'>Hello, {user?.firstname}.</h1>
-      <IconLogout className='h-10 w-10 cursor-pointer' onClick={displayLogoutModal} />
-    </div>
-  );
-}
-
-function LogoutModal({ onClose, opened }: { onClose: () => void; opened: boolean }) {
-  const navigate = useNavigate();
-
-  const handleLogout = () => {
-    logout();
-    navigate("/login");
-  };
-
-  return (
-    <Modal opened={opened} title='Are you sure you want to logout?' onClose={onClose} centered>
-      <div className='flex justify-around mt-5'>
-        <button onClick={onClose} className='btn-primary text-sm shadow-sm w-32'>
-          Cancel
-        </button>
-        <button onClick={handleLogout} className='btn bg-gray-300 text-sm shadow-sm w-32'>
-          Logout
-        </button>
-      </div>
-    </Modal>
   );
 }
 

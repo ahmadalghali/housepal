@@ -11,7 +11,9 @@ body {
 
 @layer components {
   .bg-brand {
-    @apply bg-primary-500;
+    /* @apply bg-gradient-to-tr from-blue-500 via-cyan-500 to-emerald-500; */
+    @apply bg-gradient-to-br from-emerald-500 via-teal-500 to-cyan-500
+    /* @apply bg-gradient-to-bl from-sky-500 via-teal-500 to-green-500; */;
   }
 
   .bg-brand-dark {

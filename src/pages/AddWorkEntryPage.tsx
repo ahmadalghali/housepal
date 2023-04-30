@@ -60,7 +60,7 @@ export default function AddWorkEntryPage() {
     <>
       <LogoutModal onClose={dismissLogoutModal} opened={opened} />
 
-      <div className='h-screen grid  pt-6'>
+      <div className='h-screen grid'>
         <div className='flex'>
           <IconArrowLeft className='h-14 w-14' onClick={() => navigate("/")} />
         </div>

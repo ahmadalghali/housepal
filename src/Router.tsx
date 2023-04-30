@@ -4,6 +4,7 @@ import NotFoundView from "./pages/NotFoundView";
 import LoginView from "./pages/LoginView";
 import HomeView from "./pages/HomeView";
 import AddWorkEntryPage from "./pages/AddWorkEntryPage";
+import SearchAllEntriesPage from "./pages/SearchAllEntriesPage";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -11,6 +12,7 @@ const router = createBrowserRouter(
       <Route path='/' element={<HomeView />} />
       <Route path='/login' element={<LoginView />} />
       <Route path='/add-entry' element={<AddWorkEntryPage />} />
+      <Route path='/search' element={<SearchAllEntriesPage />} />
       <Route path='*' element={<NotFoundView />} />
     </Route>
   )

@@ -7,6 +7,9 @@ export default function useUser() {
     return user ? JSON.parse(user) : null;
   });
 
+  const isLoggedInUser = (userId: number) => {
+    return userId === user?.id;
+  };
   useEffect(() => {
     if (user) {
       localStorage.setItem("user", JSON.stringify(user));
@@ -15,5 +18,6 @@ export default function useUser() {
 
   return {
     user,
+    isLoggedInUser,
   };
 }

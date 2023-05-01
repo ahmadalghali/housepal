@@ -3,12 +3,21 @@ import { IconPlus, IconSearch } from "@tabler/icons-react";
 import useUser from "../hooks/useUser";
 import WorkEntry from "../components/WorkEntry";
 import useMinsFormatter from "../hooks/useMinsFormatter";
+import { WorkEntryDTO } from "../types";
 
 export default function DashboardPage() {
   const navigate = useNavigate();
   const { user } = useUser();
 
-  const [time, format, { formattedStr }] = useMinsFormatter(799);
+  const entries: WorkEntryDTO[] = [
+    { id: 1, dateOfWork: new Date(), minutesWorked: 19, user: user!, notes: "Lorem ipsum" },
+    { id: 2, dateOfWork: new Date(), minutesWorked: 43, user: user! },
+    { id: 3, dateOfWork: new Date(), minutesWorked: 73, user: user! },
+    { id: 4, dateOfWork: new Date(), minutesWorked: 26, user: user!, notes: "Lorem ipsum" },
+    { id: 5, dateOfWork: new Date(), minutesWorked: 2, user: user!, notes: "Lorem ipsum" },
+  ];
+
+  const [{ timeAndFormatString }] = useMinsFormatter(799);
 
   return (
     <>
@@ -68,13 +77,12 @@ export default function DashboardPage() {
           </div>
 
           <div className='flex flex-col space-y-4  h-72 overflow-y-scroll overscroll-y-contain mt-3 pb-5 shadow-inner'>
-            <WorkEntry />
-            <WorkEntry />
-            <WorkEntry />
-            <WorkEntry />
-            <WorkEntry />
-            <WorkEntry />
-            <WorkEntry />
+            {entries &&
+              entries.map((entry) => (
+                <>
+                  <WorkEntry entry={entry} />
+                </>
+              ))}
           </div>
         </div>
       </div>

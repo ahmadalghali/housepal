@@ -1,7 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { IconPlus, IconSearch } from "@tabler/icons-react";
 import useUser from "../hooks/useUser";
-
 import WorkEntry from "../components/WorkEntry";
 import useMinsFormatter from "../hooks/useMinsFormatter";
 
@@ -57,8 +56,8 @@ export default function DashboardPage() {
 
         {/* <AddWorkEntryButton onClick={() => navigate("/add-entry")} /> */}
 
-        <div className='mt-20 '>
-          <div className='flex justify-between items-start '>
+        <div className='mt-10 '>
+          <div className='flex justify-between items-start'>
             <h2 className='text-3xl font-medium '>Recent entries</h2>
             <button
               onClick={() => navigate("/search")}
@@ -68,7 +67,7 @@ export default function DashboardPage() {
             </button>
           </div>
 
-          <div className='flex flex-col space-y-4 mt-5'>
+          <div className='flex flex-col space-y-4  h-72 overflow-y-scroll overscroll-y-contain mt-3 pb-5 shadow-inner'>
             <WorkEntry />
             <WorkEntry />
             <WorkEntry />

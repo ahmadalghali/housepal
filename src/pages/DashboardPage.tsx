@@ -5,7 +5,7 @@ import useUser from "../hooks/useUser";
 import WorkEntry from "../components/WorkEntry";
 import useMinsFormatter from "../hooks/useMinsFormatter";
 
-export default function HomeView() {
+export default function DashboardPage() {
   const navigate = useNavigate();
   const { user } = useUser();
 
@@ -16,7 +16,7 @@ export default function HomeView() {
       <div className=''>
         <h1 className='text-3xl font-semibold'>Hello, {user?.firstname}.</h1>
 
-        <div className='grid grid-cols-2 gap-4 mt-10'>
+        <div className='grid grid-cols-2 gap-y-4 gap-x-6 mt-10'>
           <div className='bg-slate-200 rounded-xl p-3 h-24'>
             <div className='flex flex-col h-full justify-between'>
               <p>

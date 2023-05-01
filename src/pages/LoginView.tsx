@@ -27,7 +27,7 @@ export default function LoginView() {
     if (user) {
       localStorage.setItem("user", JSON.stringify(user));
       console.log("user :>> ", user);
-      navigate("/");
+      navigate("/dashboard");
     } else {
       notifications.show({
         message: "Email or password incorrect, please try again.",

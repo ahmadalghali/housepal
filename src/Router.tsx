@@ -2,14 +2,14 @@ import { Route, createBrowserRouter, createRoutesFromElements } from "react-rout
 import RootLayout from "./layouts/RootLayout";
 import NotFoundView from "./pages/NotFoundView";
 import LoginView from "./pages/LoginView";
-import HomeView from "./pages/HomeView";
+import DashboardPage from "./pages/DashboardPage";
 import AddWorkEntryPage from "./pages/AddWorkEntryPage";
 import SearchAllEntriesPage from "./pages/SearchAllEntriesPage";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route element={<RootLayout />}>
-      <Route path='/' element={<HomeView />} />
+      <Route path='/dashboard' element={<DashboardPage />} />
       <Route path='/login' element={<LoginView />} />
       <Route path='/add-entry' element={<AddWorkEntryPage />} />
       <Route path='/search' element={<SearchAllEntriesPage />} />

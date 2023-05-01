@@ -62,7 +62,7 @@ export default function AddWorkEntryPage() {
 
       <div className='h-screen grid'>
         <div className='flex'>
-          <IconArrowLeft className='h-14 w-14' onClick={() => navigate("/")} />
+          <IconArrowLeft className='h-14 w-14' onClick={() => navigate("/dashboard")} />
         </div>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className=''>

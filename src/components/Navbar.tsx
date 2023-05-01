@@ -35,7 +35,7 @@ export default function Navbar({ className }: Props) {
           className
         }
       >
-        <p className='text-3xl font-bold cursor-pointer' onClick={() => navigate("/")}>
+        <p className='text-3xl font-bold cursor-pointer' onClick={() => navigate("/dashboard")}>
           H C L
         </p>
         <div className='flex space-x-5 items-center'>

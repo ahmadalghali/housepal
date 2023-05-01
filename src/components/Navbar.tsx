@@ -27,7 +27,7 @@ export default function Navbar({ className }: Props) {
 
   return (
     <>
-      <LogoutModal onClose={dismissLogoutModal} opened={opened} />
+      <LogoutModal close={dismissLogoutModal} opened={opened} />
 
       <nav
         className={
@@ -60,18 +60,19 @@ export default function Navbar({ className }: Props) {
   );
 }
 
-function LogoutModal({ onClose, opened }: { onClose: () => void; opened: boolean }) {
+function LogoutModal({ close, opened }: { close: () => void; opened: boolean }) {
   const navigate = useNavigate();
   // const { handleLogout } = useLogout();
   const handleLogout = () => {
     logout();
     navigate("/login");
+    close();
   };
 
   return (
-    <Modal opened={opened} title='Are you sure you want to logout?' onClose={onClose} centered>
+    <Modal opened={opened} title='Are you sure you want to logout?' onClose={close} centered>
       <div className='flex justify-around mt-5'>
-        <button onClick={onClose} className='btn-primary text-sm shadow-sm w-32'>
+        <button onClick={close} className='btn-primary text-sm shadow-sm w-32'>
           Cancel
         </button>
         <button onClick={() => handleLogout()} className='btn bg-gray-300 text-sm shadow-sm w-32'>

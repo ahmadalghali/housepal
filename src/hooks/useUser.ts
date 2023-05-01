@@ -2,16 +2,16 @@ import { useEffect, useState } from "react";
 import { UserDTO } from "../types";
 
 export default function useUser() {
-  const [user, setUser] = useState<UserDTO | null>(null);
+  const [user, setUser] = useState<UserDTO | null>(() => {
+    const user = localStorage.getItem("user");
+    return user ? JSON.parse(user) : null;
+  });
 
   useEffect(() => {
-    const userOptional = localStorage.getItem("user");
-
-    if (userOptional) {
-      const user = JSON.parse(userOptional) as UserDTO;
-      setUser(user);
+    if (user) {
+      localStorage.setItem("user", JSON.stringify(user));
     }
-  }, []);
+  }, [user]);
 
   return {
     user,

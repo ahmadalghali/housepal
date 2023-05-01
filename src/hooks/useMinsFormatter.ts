@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-export default function useMinsFormatter(mins: number): [number, string, { formattedStr: string }] {
+export default function useMinsFormatter(mins: number): [{ timeAndFormatString: string }, number, string] {
   const [timeAndFormat, setTimeAndFormat] = useState<[number, string]>([0, "mins"]);
   useEffect(() => {
     if (mins >= 60) {
@@ -16,5 +16,5 @@ export default function useMinsFormatter(mins: number): [number, string, { forma
     }
   }, [mins]);
 
-  return [timeAndFormat[0], timeAndFormat[1], { formattedStr: `${timeAndFormat[0]} ${timeAndFormat[1]}` }];
+  return [{ timeAndFormatString: `${timeAndFormat[0]} ${timeAndFormat[1]}` }, timeAndFormat[0], timeAndFormat[1]];
 }

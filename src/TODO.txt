@@ -1,0 +1,8 @@
+- WorkEntry 
+  -fix the justify alignment, make them take fixed widths 
+  instead of adaptive
+
+  - animate using framer motion to slide in from right to left staggered
+
+
+

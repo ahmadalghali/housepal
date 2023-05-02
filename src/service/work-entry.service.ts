@@ -13,8 +13,16 @@ async function getRecentEntries(): Promise<WorkEntryDTO[]> {
   return api.get<WorkEntryDTO[]>(`/entries`).then((res) => res.data);
 }
 
+async function getMyEntries(userId: number): Promise<WorkEntryDTO[]> {
+  return api.get<WorkEntryDTO[]>(`/entries/users/${userId}`).then((res) => res.data);
+}
+
 async function getUserStats(userId: number): Promise<MinutesWorkedStatsDataDTO> {
   return api.get(`/entries/stats/users/${userId}`).then((res) => res.data);
 }
 
-export { submitWorkEntry, deleteEntry, getRecentEntries, getUserStats };
+async function getAllUsersStats(): Promise<MinutesWorkedStatsDataDTO[]> {
+  return api.get(`/entries/stats`).then((res) => res.data);
+}
+
+export { submitWorkEntry, deleteEntry, getRecentEntries, getUserStats, getAllUsersStats, getMyEntries };

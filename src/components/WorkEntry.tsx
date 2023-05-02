@@ -95,8 +95,8 @@ function ViewEntryModal({
         title={
           <p className='font-semibold'>
             <span className='text-lg'>{user.firstname}</span> -{" "}
-            <span className='bg-slate-200 rounded-full px-3 py-1'>{timeAndFormatString}</span> on{" "}
-            <span className='bg-slate-200 rounded-full px-3 py-1'>{dateMonth}</span>
+            <span className='bg-slate-200 rounded-full px-3 py-1 inline-block'>{timeAndFormatString}</span> on{" "}
+            <span className='bg-slate-200 rounded-full px-3 py-1 inline-block'>{dateMonth}</span>
           </p>
         }
         centered

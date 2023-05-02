@@ -6,7 +6,7 @@ import { ReactNode } from "react";
 import { deleteEntry } from "../service/work-entry.service";
 import { toast } from "react-toastify";
 import useUser from "../hooks/useUser";
-import { formatMinutesToHours } from "../util/minutesFormatter";
+import { formatMinutes } from "../util/minutesFormatter";
 
 type Props = {
   entry: WorkEntryDTO;
@@ -14,7 +14,7 @@ type Props = {
 
 function WorkEntry({ entry }: Props) {
   const { dateOfWork, minutesWorked, user, notes } = entry;
-  const timeAndFormatString = formatMinutesToHours(minutesWorked);
+  const timeAndFormatString = formatMinutes(minutesWorked);
 
   const dateOfWork_dayMonthYearFormat = new Date(dateOfWork).toLocaleDateString("en-GB", {
     month: "2-digit",
@@ -33,7 +33,10 @@ function WorkEntry({ entry }: Props) {
         open={openViewEntryModal}
       />
 
-      <div className='bg-slate-200 rounded-xl p-3 flex justify-around cursor-pointer' onClick={openViewEntryModal}>
+      <div
+        className='bg-slate-200 rounded-xl py-3 px-1  grid grid-cols-4 place-items-center cursor-pointer'
+        onClick={openViewEntryModal}
+      >
         <p>{user.firstname}</p>
         <p>{timeAndFormatString}</p>
         <p>{dateOfWork_dayMonthYearFormat}</p>
@@ -54,11 +57,11 @@ function ViewEntryModal({
   opened: boolean;
   open: () => void;
 }) {
-  const { id, dateOfWork, minutesWorked, user, notes } = entry;
+  const { dateOfWork, minutesWorked, user, notes } = entry;
 
   const [deleteDialogOpened, { open: openDeleteDialog, close: closeDeleteDialog }] = useDisclosure(false);
 
-  const timeAndFormatString = formatMinutesToHours(minutesWorked);
+  const timeAndFormatString = formatMinutes(minutesWorked);
   const dateMonth = new Date(dateOfWork).toLocaleDateString("en-GB", {
     month: "long",
     day: "2-digit",
@@ -72,12 +75,13 @@ function ViewEntryModal({
       <DeleteEntryDialog
         title={
           <p className='leading-8 font-medium break-words'>
-            Are you sure you want to delete
-            <span className='font-semibold bg-gray-300 rounded-full px-3 mx-1  inline-block'>
-              {" "}
+            Are you sure you want to delete{" "}
+            <span className='text-sm font-semibold bg-slate-200 rounded-full px-3 py-1 inline-block'>
               {`${timeAndFormatString}`}
             </span>{" "}
-            on <span className='font-semibold bg-gray-300 rounded-full px-3 mx-1 inline-block'>{`${dateMonth}`}</span>?
+            on{" "}
+            <span className='text-sm font-semibold bg-slate-200 rounded-full px-3 py-1 inline-block'>{`${dateMonth}`}</span>{" "}
+            ?
           </p>
         }
         close={closeDeleteDialog}
@@ -88,7 +92,13 @@ function ViewEntryModal({
       <Modal
         opened={opened}
         onClose={close}
-        title={`${user.firstname} - ${timeAndFormatString} on ${dateMonth}`}
+        title={
+          <p className='font-semibold'>
+            <span className='text-lg'>{user.firstname}</span> -{" "}
+            <span className='bg-slate-200 rounded-full px-3 py-1'>{timeAndFormatString}</span> on{" "}
+            <span className='bg-slate-200 rounded-full px-3 py-1'>{dateMonth}</span>
+          </p>
+        }
         centered
       >
         <p className='bg-slate-100 p-4 rounded-md h-40 overflow-y-scroll'>{notes}</p>

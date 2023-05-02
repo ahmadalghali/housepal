@@ -1,26 +1,10 @@
-export function formatMinutes(mins: number): [{ timeAndFormatString: string }, number, string] {
-  let timeAndFormat: [number, string] = [0, "mins"];
-  if (mins >= 60) {
-    const hours = +(mins / 60).toFixed(2);
-
-    timeAndFormat = [hours, "hrs"];
-  } else if (mins <= 59 && mins >= 2) {
-    timeAndFormat = [mins, "mins"];
-  } else if (mins == 1) {
-    timeAndFormat = [1, "min"];
+export function formatMinutes(minutes: number) {
+  if (minutes < 60) {
+    return `${minutes} mins`;
   } else {
-    timeAndFormat = [mins, "mins"];
+    const hours = Math.floor(minutes / 60);
+    const remainingMinutes = minutes % 60;
+    const paddedMinutes = remainingMinutes.toString().padStart(2, "0");
+    return `${hours}h ${paddedMinutes}m`;
   }
-
-  return [{ timeAndFormatString: `${timeAndFormat[0]} ${timeAndFormat[1]}` }, timeAndFormat[0], timeAndFormat[1]];
-}
-
-export function formatMinutesToHours(mins: number) {
-  const hours = Math.floor(mins / 60);
-  const remainingMins = mins % 60;
-
-  const hoursStr = hours > 0 ? `${hours}h` : "0h";
-  const minsStr = remainingMins > 0 ? `${remainingMins}m` : "00m";
-
-  return `${hoursStr} ${minsStr}`.trim();
 }

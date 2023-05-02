@@ -1,11 +1,11 @@
 import { useNavigate } from "react-router-dom";
-import { IconPlus, IconSearch } from "@tabler/icons-react";
+import { IconSearch } from "@tabler/icons-react";
 import useUser from "../hooks/useUser";
 import WorkEntry from "../components/WorkEntry";
 import { DashboardStats, MinutesWorkedStatsDataDTO, WorkEntryDTO } from "../types";
 import { useEffect, useState } from "react";
 import { getRecentEntries, getUserStats } from "../service/work-entry.service";
-import { formatMinutesToHours } from "../util/minutesFormatter";
+import { formatMinutes } from "../util/minutesFormatter";
 
 export default function DashboardPage() {
   const navigate = useNavigate();
@@ -22,9 +22,9 @@ export default function DashboardPage() {
   const mapUserStatsDTOtoDashboardStats = (userStatsDTO: MinutesWorkedStatsDataDTO): DashboardStats => {
     const { minsWorkedAllTime, minsWorkedMonth, minsWorkedToday } = userStatsDTO;
 
-    const today = formatMinutesToHours(minsWorkedToday);
-    const month = formatMinutesToHours(minsWorkedMonth);
-    const allTime = formatMinutesToHours(minsWorkedAllTime);
+    const today = formatMinutes(minsWorkedToday);
+    const month = formatMinutes(minsWorkedMonth);
+    const allTime = formatMinutes(minsWorkedAllTime);
 
     return { allTime, month, today };
   };

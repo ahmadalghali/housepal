@@ -28,7 +28,16 @@ export type AddWorkEntryResponseDTO = {
 export type WorkEntryDTO = {
   id: number;
   user: UserDTO;
-  dateOfWork: Date;
+  dateOfWork: string;
   minutesWorked: number;
   notes?: string;
 };
+
+export type MinutesWorkedStatsDataDTO = {
+  user: UserDTO;
+  minsWorkedToday: number;
+  minsWorkedMonth: number;
+  minsWorkedAllTime: number;
+};
+
+export type DashboardStats = { today: string; month: string; allTime: string };

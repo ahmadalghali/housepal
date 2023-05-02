@@ -1,5 +1,4 @@
 import { IconNotes, IconPencil, IconTrashFilled } from "@tabler/icons-react";
-import useMinsFormatter from "../hooks/useMinsFormatter";
 import { WorkEntryDTO } from "../types";
 import { useDisclosure } from "@mantine/hooks";
 import { Modal } from "@mantine/core";
@@ -7,6 +6,7 @@ import { ReactNode } from "react";
 import { deleteEntry } from "../service/work-entry.service";
 import { toast } from "react-toastify";
 import useUser from "../hooks/useUser";
+import { formatMinutesToHours } from "../util/minutesFormatter";
 
 type Props = {
   entry: WorkEntryDTO;
@@ -14,8 +14,9 @@ type Props = {
 
 function WorkEntry({ entry }: Props) {
   const { dateOfWork, minutesWorked, user, notes } = entry;
-  const [{ timeAndFormatString }] = useMinsFormatter(minutesWorked);
-  const dateOfWork_dayMonthYearFormat = dateOfWork.toLocaleDateString("en-GB", {
+  const timeAndFormatString = formatMinutesToHours(minutesWorked);
+
+  const dateOfWork_dayMonthYearFormat = new Date(dateOfWork).toLocaleDateString("en-GB", {
     month: "2-digit",
     day: "2-digit",
     year: "2-digit",
@@ -57,9 +58,8 @@ function ViewEntryModal({
 
   const [deleteDialogOpened, { open: openDeleteDialog, close: closeDeleteDialog }] = useDisclosure(false);
 
-  const [{ timeAndFormatString }] = useMinsFormatter(minutesWorked);
-
-  const dateMonth = dateOfWork.toLocaleDateString("en-GB", {
+  const timeAndFormatString = formatMinutesToHours(minutesWorked);
+  const dateMonth = new Date(dateOfWork).toLocaleDateString("en-GB", {
     month: "long",
     day: "2-digit",
     year: "numeric",

@@ -23,9 +23,13 @@ function EntriesContainer({ title, entries, className }: Props) {
         </button>
       </div>
 
-      <div className='flex flex-col space-y-4  h-40 overflow-y-scroll overscroll-y-contain mt-3 pb-5 shadow-inner'>
+      <div className=' rounded-lg flex flex-col space-y-4  h-full flex-1 overflow-y-scroll overscroll-y-contain mt-3 pb-5 shadow-inner'>
         {entries.length ? (
-          entries.map((entry) => <WorkEntry entry={entry} />)
+          entries.map((entry) => (
+            <>
+              <WorkEntry entry={entry} />
+            </>
+          ))
         ) : (
           <p className='text-center mt-20 text-lg'>You have no recent entries.</p>
         )}

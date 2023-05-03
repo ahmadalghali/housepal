@@ -51,7 +51,10 @@ export default function AddWorkEntryPage() {
 
   const handleAddWorkEntryResponse = ({ message, workEntry }: AddWorkEntryResponseDTO) => {
     if (message === "Added") {
+      navigate("/dashboard");
       toast.success("Entry added successfully!");
+    } else {
+      toast.error("Failed to add entry, something went wrong, please try again later.");
     }
   };
 
@@ -64,12 +67,11 @@ export default function AddWorkEntryPage() {
           <div className='flex justify-center items-baseline space-x-4'>
             <input
               type='number'
-              min={0}
-              value={minsWorked}
-              onChange={(e) => setMinsWorked(e.target.value)}
               className='input mt-5 w-full text-center'
-              {...register("minsWorked", {
+              {...register("minutesWorked", {
                 required: "Required",
+                min: 0,
+                value: 0,
               })}
             />
             <p className='text-lg font-semibold'>mins</p>
@@ -97,8 +99,6 @@ export default function AddWorkEntryPage() {
               checked={isToday}
               onChange={() => setIsToday(!isToday)}
             />
-            {/* <label htmlFor='today'>Today</label>
-              <input id='today' name='today' type='checkbox' /> */}
           </div>
         </div>
 

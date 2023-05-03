@@ -1,11 +1,11 @@
 import axios from "axios";
 
-const runningInProduction = import.meta.env.PROD;
+// const runningInProduction = import.meta.env.PROD;
 
-let BASE_URL;
+const BASE_URL = "https://house-chores-logger-api-production.up.railway.app";
 
 // if (true) {
-BASE_URL = "https://house-chores-logger-api-production.up.railway.app";
+// BASE_URL = "https://house-chores-logger-api-production.up.railway.app";
 // } else {
 //   BASE_URL = "http://localhost:8050";
 // }

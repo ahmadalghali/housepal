@@ -1,7 +1,7 @@
 import { WorkEntryDTO } from "../types";
 import WorkEntry from "../components/WorkEntry";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+// import { useParams } from "react-router-dom";
 import { getRecentEntries } from "../service/work-entry.service";
 import { Select } from "@mantine/core";
 

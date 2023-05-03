@@ -1,6 +1,5 @@
 import { useNavigate } from "react-router-dom";
 import useUser from "../hooks/useUser";
-import useLogout from "../hooks/useLogout";
 import { useEffect, useState } from "react";
 import { Modal } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";

@@ -1,22 +1,17 @@
 import { useNavigate } from "react-router-dom";
-import { logout } from "../service/auth.service";
-import { DatePickerInput } from "@mantine/dates";
+import { DatePickerInput, DateValue } from "@mantine/dates";
 import { useEffect, useState } from "react";
-import { IconArrowLeft, IconLogout } from "@tabler/icons-react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { AddWorkEntryRequestDTO, AddWorkEntryResponseDTO } from "../types";
 import { submitWorkEntry } from "../service/work-entry.service";
 import useUser from "../hooks/useUser";
-import { Checkbox, Modal } from "@mantine/core";
-import { useDisclosure } from "@mantine/hooks";
+import { Checkbox } from "@mantine/core";
 import { toast } from "react-toastify";
 
 export default function AddWorkEntryPage() {
-  const [date, setDate] = useState<Date>(new Date());
-  const [minsWorked, setMinsWorked] = useState(0);
+  const [date, setDate] = useState<DateValue>(new Date());
   const navigate = useNavigate();
 
-  const [opened, { open: displayLogoutModal, close: dismissLogoutModal }] = useDisclosure(false);
   const [isToday, setIsToday] = useState(true);
 
   const { user } = useUser();
@@ -32,11 +27,7 @@ export default function AddWorkEntryPage() {
     notes?: string;
   };
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<Inputs>();
+  const { register, handleSubmit } = useForm<Inputs>();
 
   const onSubmit: SubmitHandler<Inputs> = ({ dateOfWork, minutesWorked, notes }: Inputs) => {
     const addWorkEntryRequestDTO: AddWorkEntryRequestDTO = {
@@ -49,7 +40,7 @@ export default function AddWorkEntryPage() {
     submitWorkEntry(addWorkEntryRequestDTO).then((res) => handleAddWorkEntryResponse(res));
   };
 
-  const handleAddWorkEntryResponse = ({ message, workEntry }: AddWorkEntryResponseDTO) => {
+  const handleAddWorkEntryResponse = ({ message }: AddWorkEntryResponseDTO) => {
     if (message === "Added") {
       navigate("/dashboard");
       toast.success("Entry added successfully!");
@@ -95,7 +86,7 @@ export default function AddWorkEntryPage() {
 
             <Checkbox
               label='Today'
-              styles={{ label: { fontSize: "1.2rem", fontWeight: "600" } }}
+              styles={{ label: { fontSize: "1.2rem", fontWeight: "bolder" } }}
               checked={isToday}
               onChange={() => setIsToday(!isToday)}
             />

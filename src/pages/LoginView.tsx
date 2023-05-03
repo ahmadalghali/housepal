@@ -1,4 +1,3 @@
-import { Button, PasswordInput, TextInput } from "@mantine/core";
 import { useNavigate } from "react-router-dom";
 import { IconClockHour4 } from "@tabler/icons-react";
 import { SubmitHandler, useForm } from "react-hook-form";
@@ -23,7 +22,7 @@ export default function LoginView() {
     login(loginRequestDto).then((res) => handleLoginResponse(res));
   };
 
-  const handleLoginResponse = ({ message, user }: LoginResponseDTO) => {
+  const handleLoginResponse = ({ user }: LoginResponseDTO) => {
     if (user) {
       localStorage.setItem("user", JSON.stringify(user));
       console.log("user :>> ", user);

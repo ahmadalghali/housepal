@@ -1,4 +1,4 @@
-import { IconChartBar, IconHome, IconHome2, IconPlus, IconSearch } from "@tabler/icons-react";
+import { IconChartBar, IconHome2, IconPlus } from "@tabler/icons-react";
 import { useNavigate } from "react-router-dom";
 export default function BottomNavigationBar() {
   const navigate = useNavigate();

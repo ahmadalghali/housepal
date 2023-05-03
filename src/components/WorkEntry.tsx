@@ -34,7 +34,7 @@ function WorkEntry({ entry }: Props) {
       />
 
       <div
-        className='bg-slate-200 rounded-xl py-3 px-1  grid grid-cols-4 place-items-center cursor-pointer'
+        className='bg-slate-200 rounded-lg py-3 px-1  grid grid-cols-4 place-items-center cursor-pointer'
         onClick={openViewEntryModal}
       >
         <p>{user.firstname}</p>

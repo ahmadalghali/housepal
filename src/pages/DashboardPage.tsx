@@ -24,9 +24,9 @@ export default function DashboardPage() {
       <p className='mt-5 mb-3 font-medium text-gray-500 text-lg'>Here's your breakdown</p>
       {userStats && <UserStatsView stats={userStats} compact />}
 
-      <EntriesContainer entries={recentEntries} title='Recent entries' className='mt-10' />
+      <EntriesContainer entries={recentEntries} title='Recent entries' className='mt-10 h-80' />
 
-      <EntriesContainer entries={myEntries} title='My entries' className='mt-10' />
+      {/* <EntriesContainer entries={myEntries} title='My entries' className='mt-10' /> */}
     </>
   );
 }

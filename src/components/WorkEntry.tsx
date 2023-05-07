@@ -105,7 +105,12 @@ function ViewEntryModal({
         <p className='bg-slate-100 p-4 rounded-md h-40 overflow-y-scroll'>{notes}</p>
         {isLoggedInUser(user.id) && (
           <div className='flex justify-end space-x-3 mt-5'>
-            <IconPencil fill='black' size='40' className='bg-slate-100 rounded-full p-2 cursor-pointer' />
+            <IconPencil
+              fill='black'
+              size='40'
+              className='bg-slate-100 rounded-full p-2 cursor-pointer'
+              onClick={() => toast.info("Coming soon!")}
+            />
             <IconTrashFilled
               style={{ color: "#ed4e4e" }}
               size='40'

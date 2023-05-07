@@ -8,7 +8,7 @@ import BottomNavigationBar from "../components/BottomNavigationBar";
 import Navbar from "../components/Navbar";
 import useAuth from "../hooks/useAuth";
 export default function RootLayout() {
-  const { user, isLoggedIn } = useAuth();
+  const { user } = useAuth();
   return (
     <MantineProvider>
       <Notifications />

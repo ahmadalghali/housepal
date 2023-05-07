@@ -1,8 +1,5 @@
-import { WorkEntryDTO } from "../types";
 import { useEffect, useState } from "react";
-// import { useParams } from "react-router-dom";
-import { getAllEntries, getEntriesByUserId, getRecentEntries } from "../service/work-entry.service";
-import { Select } from "@mantine/core";
+import { getAllEntries } from "../service/work-entry.service";
 import EntriesList from "../components/EntriesList";
 import useAuth from "../hooks/useAuth";
 import useWorkEntries from "../hooks/useWorkEntries";

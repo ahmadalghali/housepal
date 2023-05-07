@@ -1,10 +1,10 @@
 import { useNavigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { Modal } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { AuthContext } from "../context/AuthContext";
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 
 function LogoutModal({ close, opened }: { close: () => void; opened: boolean }) {
   const navigate = useNavigate();

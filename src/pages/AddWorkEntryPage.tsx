@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { DatePickerInput, DateValue } from "@mantine/dates";
+import { DatePickerInput } from "@mantine/dates";
 import { useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { AddWorkEntryRequestDTO, AddWorkEntryResponseDTO } from "../types";

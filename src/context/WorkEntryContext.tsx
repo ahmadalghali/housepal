@@ -17,7 +17,7 @@ const initialValue: IWorkEntriesContext = {
   setRecentEntries: () => {},
   allEntries: [],
   setAllEntries: () => {},
-  getEntriesByUserId: (userId: number) => Promise.resolve([]),
+  getEntriesByUserId: () => Promise.resolve([]),
 };
 
 const WorkEntriesContext = createContext<IWorkEntriesContext>(initialValue);

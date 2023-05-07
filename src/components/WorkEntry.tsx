@@ -8,7 +8,6 @@ import { toast } from "react-toastify";
 import useAuth from "../hooks/useAuth";
 import { formatMinutes } from "../util/minutesFormatter";
 import useWorkEntries from "../hooks/useWorkEntries";
-import { motion } from "framer-motion";
 
 type Props = {
   entry: WorkEntryDTO;

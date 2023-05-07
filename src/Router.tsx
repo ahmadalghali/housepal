@@ -1,4 +1,4 @@
-import { Route, createBrowserRouter, createRoutesFromElements, useNavigate } from "react-router-dom";
+import { Route, createBrowserRouter, createRoutesFromElements } from "react-router-dom";
 import RootLayout from "./layouts/RootLayout";
 import NotFoundView from "./pages/NotFoundView";
 import LoginView from "./pages/LoginView";

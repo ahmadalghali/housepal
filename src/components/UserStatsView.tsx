@@ -1,5 +1,7 @@
+import { animate, useMotionValue, useTransform } from "framer-motion";
 import { DashboardStats, MinutesWorkedStatsDataDTO } from "../types";
 import { formatMinutes } from "../util/minutesFormatter";
+import { useEffect } from "react";
 
 export default function UserStatsView({
   stats,
@@ -19,6 +21,7 @@ export default function UserStatsView({
   };
 
   const { allTime, month, today } = mapUserStatsDTOtoDashboardStats(stats);
+
   return (
     <>
       {compact ? (

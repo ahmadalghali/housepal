@@ -1,8 +1,7 @@
 import { IconSearch } from "@tabler/icons-react";
 import { useNavigate } from "react-router-dom";
 import { WorkEntryDTO } from "../types";
-import WorkEntry from "./WorkEntry";
-
+import EntriesList from "./EntriesList";
 type Props = {
   title: string;
   entries: WorkEntryDTO[];
@@ -13,7 +12,7 @@ function EntriesContainer({ title, entries, className }: Props) {
   const navigate = useNavigate();
   return (
     <div className={`${className}`}>
-      <div className='flex justify-between items-start'>
+      <div className='flex justify-between items-start mb-5'>
         <h2 className='text-2xl font-medium '>{title}</h2>
         <button
           onClick={() => navigate("/search")}
@@ -23,17 +22,11 @@ function EntriesContainer({ title, entries, className }: Props) {
         </button>
       </div>
 
-      <div className=' rounded-lg flex flex-col space-y-4  h-full flex-1 overflow-y-scroll overscroll-y-contain mt-3 pb-5 shadow-inner'>
-        {entries.length ? (
-          entries.map((entry) => (
-            <>
-              <WorkEntry entry={entry} />
-            </>
-          ))
-        ) : (
-          <p className='text-center mt-20 text-lg'>You have no recent entries.</p>
-        )}
-      </div>
+      {entries.length ? (
+        <EntriesList entries={entries} />
+      ) : (
+        <p className='text-center mt-20 text-lg'>You have no recent entries.</p>
+      )}
     </div>
   );
 }

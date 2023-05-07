@@ -1,15 +1,7 @@
 import axios from "axios";
 
-// const runningInProduction = import.meta.env.PROD;
+const API_BASE_URL = import.meta.env.VITE_API_URL;
 
-const BASE_URL = "https://house-chores-logger-api-production.up.railway.app";
-
-// if (true) {
-// BASE_URL = "https://house-chores-logger-api-production.up.railway.app";
-// } else {
-//   BASE_URL = "http://localhost:8050";
-// }
-
-const axiosInstance = axios.create({ baseURL: BASE_URL });
+const axiosInstance = axios.create({ baseURL: API_BASE_URL });
 
 export { axiosInstance as api };

@@ -5,8 +5,10 @@ import { Modal } from "@mantine/core";
 import { ReactNode } from "react";
 import { deleteEntry } from "../service/work-entry.service";
 import { toast } from "react-toastify";
-import useUser from "../hooks/useUser";
+import useAuth from "../hooks/useAuth";
 import { formatMinutes } from "../util/minutesFormatter";
+import useWorkEntries from "../hooks/useWorkEntries";
+import { motion } from "framer-motion";
 
 type Props = {
   entry: WorkEntryDTO;
@@ -68,7 +70,7 @@ function ViewEntryModal({
     year: "numeric",
   });
 
-  const { isLoggedInUser } = useUser();
+  const { isLoggedInUser } = useAuth();
 
   return (
     <>
@@ -134,16 +136,29 @@ function DeleteEntryDialog({
   openPreviousDialog: () => void;
   entryId: number;
 }) {
+  const { recentEntries, setRecentEntries } = useWorkEntries();
+
   const handleDeleteEntry = () => {
-    deleteEntry(entryId).then((deleted) => {
-      if (deleted) {
-        toast.success("Entry deleted");
-      } else {
-        toast.error("Failed to delete entry, please try again.");
-      }
+    try {
+      deleteEntry(entryId).then((deleted) => {
+        if (deleted) {
+          optimisticDelete(entryId);
+        } else {
+          throw Error();
+        }
+      });
+    } catch (error) {
+      toast.error("Failed to delete entry, please try again.");
+    } finally {
       close();
-    });
+    }
   };
+
+  const optimisticDelete = (entryId: number) => {
+    const newEntries = recentEntries.filter((entry) => entry.id !== entryId);
+    setRecentEntries(newEntries);
+  };
+
   return (
     <Modal
       opened={opened}

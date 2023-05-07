@@ -10,7 +10,15 @@ async function deleteEntry(id: number): Promise<boolean> {
 }
 
 async function getRecentEntries(): Promise<WorkEntryDTO[]> {
+  return api.get<WorkEntryDTO[]>(`/entries?limit=15`).then((res) => res.data);
+}
+
+async function getAllEntries(): Promise<WorkEntryDTO[]> {
   return api.get<WorkEntryDTO[]>(`/entries`).then((res) => res.data);
+}
+
+async function getEntriesByUserId(userId: number): Promise<WorkEntryDTO[]> {
+  return api.get<WorkEntryDTO[]>(`/entries/users/${userId}`).then((res) => res.data);
 }
 
 async function getMyEntries(userId: number): Promise<WorkEntryDTO[]> {
@@ -25,4 +33,13 @@ async function getAllUsersStats(): Promise<MinutesWorkedStatsDataDTO[]> {
   return api.get(`/entries/stats`).then((res) => res.data);
 }
 
-export { submitWorkEntry, deleteEntry, getRecentEntries, getUserStats, getAllUsersStats, getMyEntries };
+export {
+  submitWorkEntry,
+  deleteEntry,
+  getRecentEntries,
+  getUserStats,
+  getAllUsersStats,
+  getMyEntries,
+  getAllEntries,
+  getEntriesByUserId,
+};

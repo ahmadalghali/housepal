@@ -1,23 +1,23 @@
-import { useEffect, useState } from "react";
-import { UserDTO } from "../types";
+import { useState } from "react";
 
-export default function useUser() {
-  const [user] = useState<UserDTO | null>(() => {
-    const user = localStorage.getItem("user");
-    return user ? JSON.parse(user) : null;
-  });
+export const useLocalStorage = () => {
+  const [value, setValue] = useState<string | null>(null);
 
-  const isLoggedInUser = (userId: number) => {
-    return userId === user?.id;
+  const setItem = (key: string, value: string) => {
+    localStorage.setItem(key, value);
+    setValue(value);
   };
-  useEffect(() => {
-    if (user) {
-      localStorage.setItem("user", JSON.stringify(user));
-    }
-  }, [user]);
 
-  return {
-    user,
-    isLoggedInUser,
+  const getItem = (key: string) => {
+    const value = localStorage.getItem(key);
+    setValue(value);
+    return value;
   };
-}
+
+  const removeItem = (key: string) => {
+    localStorage.removeItem(key);
+    setValue(null);
+  };
+
+  return { value, setItem, getItem, removeItem };
+};

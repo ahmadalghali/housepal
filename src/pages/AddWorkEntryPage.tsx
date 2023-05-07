@@ -4,32 +4,31 @@ import { useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { AddWorkEntryRequestDTO, AddWorkEntryResponseDTO } from "../types";
 import { submitWorkEntry } from "../service/work-entry.service";
-import useUser from "../hooks/useUser";
+import useAuth from "../hooks/useAuth";
 import { Checkbox } from "@mantine/core";
 import { toast } from "react-toastify";
 
 export default function AddWorkEntryPage() {
-  const [date, setDate] = useState<DateValue>(new Date());
+  const [dateOfWork, setDateOfWork] = useState<Date>(new Date());
   const navigate = useNavigate();
 
   const [isToday, setIsToday] = useState(true);
 
-  const { user } = useUser();
+  const { user } = useAuth();
 
   useEffect(() => {
     if (isToday) {
-      setDate(new Date());
+      setDateOfWork(new Date());
     }
   }, [isToday]);
   type Inputs = {
     minutesWorked: number;
-    dateOfWork: Date;
     notes?: string;
   };
 
   const { register, handleSubmit } = useForm<Inputs>();
 
-  const onSubmit: SubmitHandler<Inputs> = ({ dateOfWork, minutesWorked, notes }: Inputs) => {
+  const onSubmit: SubmitHandler<Inputs> = ({ minutesWorked, notes }: Inputs) => {
     const addWorkEntryRequestDTO: AddWorkEntryRequestDTO = {
       dateOfWork,
       minutesWorked,
@@ -43,7 +42,7 @@ export default function AddWorkEntryPage() {
   const handleAddWorkEntryResponse = ({ message }: AddWorkEntryResponseDTO) => {
     if (message === "Added") {
       navigate("/dashboard");
-      toast.success("Entry added successfully!");
+      // toast.success("Entry added successfully!");
     } else {
       toast.error("Failed to add entry, something went wrong, please try again later.");
     }
@@ -59,10 +58,10 @@ export default function AddWorkEntryPage() {
             <input
               type='number'
               className='input mt-5 w-full text-center'
+              placeholder='0'
               {...register("minutesWorked", {
                 required: "Required",
-                min: 0,
-                value: 0,
+                min: 1,
               })}
             />
             <p className='text-lg font-semibold'>mins</p>
@@ -74,8 +73,8 @@ export default function AddWorkEntryPage() {
           <div className='flex justify-between space-x-10 items-center mt-5'>
             <DatePickerInput
               placeholder='Pick date'
-              value={date}
-              onChange={(_date) => setDate(_date)}
+              value={dateOfWork}
+              onChange={(_date) => setDateOfWork(new Date(_date!.toDateString()))}
               styles={{ input: { border: "none" } }}
               className='rounded-full w-full flex justify-center px-4 py-2 font-bold input-bg'
               disabled={isToday}
@@ -101,6 +100,7 @@ export default function AddWorkEntryPage() {
             <textarea
               className='w-full rounded-2xl resize-none h-40 shadow-md px-5 py-4 outline-primary-400 outline-offset-3'
               placeholder='Write something...'
+              {...register("notes", {})}
             ></textarea>
           </div>
         </div>

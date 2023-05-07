@@ -14,7 +14,7 @@ function UsersStatsPage() {
     <div className='space-y-6'>
       {usersStats &&
         usersStats.map((userStats) => (
-          <div className=''>
+          <div className='' key={userStats.user.id}>
             <p className='font-bold text-2xl mb-2'>{userStats.user.firstname}</p>
             <UserStatsView stats={userStats} compact />
           </div>

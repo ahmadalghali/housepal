@@ -8,7 +8,7 @@ type Props = {
 
 function EntriesList({ entries }: Props) {
   return (
-    <motion.ul className='rounded-lg   h-96 overflow-y-scroll space-y-4   pb-5'>
+    <motion.ul className='rounded-lg h-96 overflow-y-scroll overscroll-y-contain space-y-4 pb-5'>
       <AnimatePresence>
         {entries.map((entry, _) => (
           <motion.li

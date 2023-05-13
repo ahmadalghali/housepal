@@ -8,7 +8,7 @@ type Props = {
 
 function EntriesList({ entries }: Props) {
   return (
-    <motion.ul className='rounded-lg h-96 overflow-y-scroll overscroll-y-contain overscroll-x-none overflow-x-visible space-y-4 pb-5'>
+    <motion.ul className='rounded-lg h-96 overflow-y-scroll overscroll-y-contain overscroll-x-contain overflow-x-hidden space-y-4 pb-5'>
       <AnimatePresence>
         {entries.map((entry, _) => (
           <motion.li
@@ -18,7 +18,7 @@ function EntriesList({ entries }: Props) {
             // exit={{ opacity: 0 }}
             layoutId={entry.id + ""}
             whileTap={{ scale: 0.9 }}
-            whileHover={{ scale: 1.05 }}
+            // whileHover={{ scale: 1.05 }}
             key={entry.id}
           >
             <WorkEntry key={entry.id} entry={entry} />

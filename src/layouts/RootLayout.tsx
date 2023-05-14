@@ -14,7 +14,7 @@ export default function RootLayout() {
       <Notifications />
       <Navbar />
 
-      <main className='px-5 pt-5 mt-16 max-w-sm mx-auto '>
+      <main className='px-5 py-5 my-16 max-w-sm mx-auto '>
         <Outlet />
       </main>
       {user && <BottomNavigationBar />}

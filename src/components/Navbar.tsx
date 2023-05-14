@@ -47,7 +47,7 @@ const Navbar = () => {
         }
       >
         <p className='text-3xl font-bold cursor-pointer' onClick={() => navigate("/dashboard")}>
-          H C L
+          HousePal
         </p>
         {user && (
           <motion.button

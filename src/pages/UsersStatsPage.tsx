@@ -11,15 +11,18 @@ function UsersStatsPage() {
   }, []);
 
   return (
-    <div className='space-y-6'>
-      {usersStats &&
-        usersStats.map((userStats) => (
-          <div className='' key={userStats.user.id}>
-            <p className='font-bold text-2xl mb-2'>{userStats.user.firstname}</p>
-            <UserStatsView stats={userStats} compact />
-          </div>
-        ))}
-    </div>
+    <>
+      <h1 className='text-3xl font-semibold mb-10'>Statistics</h1>
+      <div className='space-y-6'>
+        {usersStats &&
+          usersStats.map((userStats) => (
+            <div className='' key={userStats.user.id}>
+              <p className='font-medium text-2xl mb-2'>{userStats.user.firstname}</p>
+              <UserStatsView stats={userStats} compact />
+            </div>
+          ))}
+      </div>
+    </>
   );
 }
 

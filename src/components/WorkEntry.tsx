@@ -64,7 +64,7 @@ function ViewEntryModal({
 
   const timeAndFormatString = formatMinutes(minutesWorked);
   const dateMonth = new Date(dateOfWork).toLocaleDateString("en-GB", {
-    month: "long",
+    month: "short",
     day: "2-digit",
     year: "numeric",
   });
@@ -94,8 +94,8 @@ function ViewEntryModal({
         opened={opened}
         onClose={close}
         title={
-          <p className='font-semibold'>
-            <span className='text-lg'>{user.firstname}</span> -{" "}
+          <p className='font-semibold text-sm'>
+            <span className='text-base'>{user.firstname}</span> -{" "}
             <span className='bg-slate-200 rounded-full px-3 py-1 inline-block'>{timeAndFormatString}</span> on{" "}
             <span className='bg-slate-200 rounded-full px-3 py-1 inline-block'>{dateMonth}</span>
           </p>

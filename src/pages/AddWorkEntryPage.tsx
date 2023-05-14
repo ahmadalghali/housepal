@@ -105,7 +105,7 @@ export default function AddWorkEntryPage() {
           </div>
         </div>
 
-        <button className='btn-primary w-full mt-20' type='submit'>
+        <button className='btn-primary w-full mt-10' type='submit'>
           submit
         </button>
       </form>

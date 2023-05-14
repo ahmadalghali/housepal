@@ -1,7 +1,7 @@
-# Housemate
+# HousePal
 
 ### Track and distribute chores between household members
-you can visit a demo version of this app on: https://housemate.vercel.app
+you can visit a demo version of this app on: https://housepal.vercel.app
 
 ## Project Screen Shots &nbsp; :camera_flash:
 
